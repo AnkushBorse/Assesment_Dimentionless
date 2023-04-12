@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}<title> All Records </title>{% endblock %}
+
+{% block content %}<div class="container"><h1>Upload CSV</h1></div>{% endblock %}
+
+{% block form %}
+<div class="container">
+
+<form style="text-align:left;" action="{% url 'results' %}" method="POST">
+    {% csrf_token %}
+    <div class="form-group row">
+        <div class="col-xs-1">
+            <label>CSV Upload</label>
+            <input class="form-control" type='file'>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-3">
+            <label>Start Date</label>
+            <input class="form-control" type='date' name="start_date" >
+        </div>
+        <div class="col-xs-2">
+            <label>End Date</label>
+            <input class="form-control" type='date' name="end_date" >
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-2">
+            <input type="submit" value="Submit">
+        </div>
+    </div>
+    </form>
+</div>
+
+
+{% endblock %}
+
+{% block table %}  
+<div class="container">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>image_name</th>
+                <th>objects_detected</th>
+                <th>timestamp</th>
+                <th>image</th>
+            </tr>
+          </thead>
+          {% for row in data %}
+          <tbody>
+            <tr>
+                <td>{{row.image_name}}</td>
+                <td>{{row.objects_detected}}</td>
+                <td>{{row.timestamp}}</td>
+                <td>{{row.image.url}}</td>
+              
+            </tr>
+        </tbody>
+            {% endfor %}
+    </table>
+</div>
+{% endblock %}
+
+{% block data %}  
+<div class="container">
+<div>
+    <a href="{% url 'upload' %}" class="btn btn-primary"> Results </a> 
+</div>
+</div>
+{% endblock %}

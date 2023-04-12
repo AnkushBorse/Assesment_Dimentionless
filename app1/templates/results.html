@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+    <title> Homepage </title>
+{% endblock %}
+
+{% block content %}<div class="container"><h1>Fill Form</h1></div>{% endblock %}
+
+
+{% block table %}  
+<div class="container">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>image_name</th>
+                <th>objects_detected</th>
+                <th>timestamp</th>
+                <th>image</th>
+            </tr>
+          </thead>
+          {% for row in data %}
+          <tbody>
+            <tr>
+                <td>{{row.image_name}}</td>
+                <td>{{row.objects_detected}}</td>
+                <td>{{row.timestamp}}</td>
+                <td>{{row.image.url}}</td>
+              
+            </tr>
+        </tbody>
+            {% endfor %}
+    </table>
+</div>
+{% endblock %}
